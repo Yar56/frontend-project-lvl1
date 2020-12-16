@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'use default node.js version'
-        uses: actions/checkout@v2
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
       - name: Install dependencies and run testing
         run: make install
         run: make lint
