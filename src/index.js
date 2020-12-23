@@ -1,4 +1,4 @@
-import readlineSync from 'readline-sync';
+// import readlineSync from 'readline-sync';
 import getName from './cli.js';
 
 export default {
@@ -16,10 +16,10 @@ export default {
     return numbers;
   },
   // loop(data) {
-    // for (let i = 0; i <= 3 - 1; i += 1) {
-    //   console.log(`Question: ${data}`);
-    //   const answer = readlineSync.question('Your answer: ');
-    // }
-    // можно через loop засунуть функцию которая будет в игре отвечать за логику
+  //   for (let i = 0; i <= 3 - 1; i += 1) {
+  //     console.log(`Question: ${data}`);
+  //     const answer = readlineSync.question('Your answer: ');
+  //   }
+  //   можно через loop засунуть функцию которая будет в игре отвечать за логику
   // },
 };

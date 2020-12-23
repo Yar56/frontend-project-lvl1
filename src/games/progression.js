@@ -27,6 +27,8 @@ export default () => {
   for (let i = 0; i <= 3 - 1; i += 1) {
     console.log(`Question: ${showElements(range(2, 20, 2))}`);
     const answer = readlineSync.question('Your answer: ');
+    console.log(answer);
+    console.log(nameUser);
   }
   // engine.loop(showElement(progression));
 };
