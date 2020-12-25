@@ -2,33 +2,33 @@ import readlineSync from 'readline-sync';
 import engine from '../index.js';
 
 export default () => {
-  // длина прогрессии от 5 и до 10 чисел; случайно
-  // позицbя спрятанного элемента выбирается случайно на каждом вопросе
-  // 2 3 5 это логика прогрессии
-
   const nameUser = engine.getName();
-  // const progression = engine.makeRandomArray(1, 15, 10).sort((a, b) => a - b);
-
-  const range = (from, to, step = 2) => {
+  const range = () => {
     const arrayForProgression = [];
-    for (let i = from; i < to; i += step) {
+    const steps = [2, 3, 5];
+    const randomStep = steps[Math.floor(Math.random() * steps.length)];
+    const start = randomStep * 2;
+    const finish = randomStep === 5 ? 50 : randomStep * 10;
+    for (let i = start; i <= finish; i += randomStep) {
       arrayForProgression.unshift(i);
     }
     return arrayForProgression.sort((a, b) => a - b);
   };
+
   console.log('What number is missing in the progression?');
-  // console.log(progression);
-  const showElements = (arr) => {
+  for (let i = 1; i <= 3; i += 1) {
+    const arr = range();
     const randomSplice = Math.floor(Math.random() * arr.length);
-    arr.splice(randomSplice, 1, '..');
+    const numbForAnswer = arr.splice(randomSplice, 1, '..').toString();
     const string = arr.toString().split(',').join(' ');
-    return string;
-  };
-  for (let i = 0; i <= 3 - 1; i += 1) {
-    console.log(`Question: ${showElements(range(2, 20, 2))}`);
+    console.log(`Question: ${string}`);
     const answer = readlineSync.question('Your answer: ');
-    console.log(answer);
-    console.log(nameUser);
+    if (answer === numbForAnswer) {
+      console.log('Correct!');
+    } else {
+      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${numbForAnswer}'.\nLet's try again, ${nameUser}!`);
+      return;
+    }
   }
-  // engine.loop(showElement(progression));
+  console.log(`Congratulations, ${nameUser}!`);
 };
