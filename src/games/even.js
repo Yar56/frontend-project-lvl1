@@ -14,7 +14,6 @@ export default () => {
       const right = numbers[i] % 2 === 0 ? 'yes' : 'no';
       return `'${wrong}' is wrong answer ;(. Correct answer was '${right}'.\nLet's try again, ${name}!`;
     };
-
     if ((numbers[i] % 2 === 0 && answer === 'yes') || (numbers[i] % 2 !== 0 && answer === 'no')) {
       console.log('Correct!');
     } else if ((numbers[i] % 2 === 0 && answer === 'no') || (numbers[i] % 2 !== 0 && answer === 'yes')) {
