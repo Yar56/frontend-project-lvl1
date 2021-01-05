@@ -3,22 +3,8 @@ import engine from '../index.js';
 
 export default () => {
   const nameUser = engine.getName();
-  // const range = () => {
-  //   const arrayForProgression = [];
-  //   const steps = [2, 3, 5];
-  //   const randomStep = steps[Math.floor(Math.random() * steps.length)];
-  //   console.log(randomStep);
-  //   const start = randomStep * 2;
-  //   const finish = randomStep === 5 ? 50 : randomStep * 10;
-  //   for (let i = start; i <= finish; i += randomStep) {
-  //     arrayForProgression.unshift(i);
-  //   }
-  //   return arrayForProgression.sort((a, b) => a - b);
-  // };
-
   console.log('What number is missing in the progression?');
   for (let i = 0; i <= 2; i += 1) {
-    // const arr = range();
     const arrayForProgression = [];
     const steps = [2, 3, 5];
     const randomStep = steps[i];
