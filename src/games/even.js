@@ -9,11 +9,12 @@ export default () => {
     }
     return false;
   });
-  function isAnswer(nums) {
-    for (let i = 0; i <= nums.length; i += 1) {
-      return nums[i] % 2 === 0 ? 'yes' : 'no';
+  const isAnswer = (number) => {
+    if (number === true) {
+      return 'yes';
     }
-  }
+    return 'no';
+  };
 
   return engine.loop('Answer "yes" if the number is even, otherwise answer "no".', numbers, isEven, isAnswer);
 };
