@@ -5,18 +5,31 @@ export default () => {
   const numbers2 = engine.makeRandomArray(1, 30, 3);
   const operations = ['*', '-', '+'];
   const createExpression = (nums1, nums2, oper) => {
-    // const expression = [nums1, oper, nums2];
-    // let string = '';
-    // const result = expression.map((item, i) => {
-      // if (Number.isInteger(item[i])) {
-      //   item[i].toString();
-      // }
-      // string += `${item[i]} `;
-      // console.log(item)
-    // });
-    // console.log(result);
+    const { length } = nums1;
+    const result = [];
+    for (let i = 0; i < length; i += 1) {
+      result.push(`${nums1[i]} ${oper[i]} ${nums2[i]}`);
+    }
+    return result;
   };
-  const data = createExpression(numbers1, numbers2, operations);
+  const results = (nums1, nums2, oper) => {
+    for (let i = 0; i < nums1.length; i += 1) {
+      if (oper[i] === '*' && nums1[i] * nums2[i]) {
+        return true;
+      }
+      if (oper[i] === '-' && nums1[i] - nums2[i]) {
+        return true;
+      }
+      if (oper[i] === '+' && nums1[i] + nums2[i]) {
+        return true;
+      }
+      return false;
+    }
+    return false;
+  };
 
-  return engine.loop('What is the result of the expression?', data);
+  const data = createExpression(numbers1, numbers2, operations);
+  const resultsExpressions = results(numbers1, numbers2, operations);
+
+  return engine.loop('What is the result of the expression?', data, resultsExpressions);
 };
