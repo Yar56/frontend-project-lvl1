@@ -1,35 +1,49 @@
 import engine from '../index.js';
 
 export default () => {
-  const numbers1 = engine.makeRandomArray(1, 30, 3);
-  const numbers2 = engine.makeRandomArray(1, 30, 3);
-  const operations = ['*', '-', '+'];
-  const createExpression = (nums1, nums2, oper) => {
-    const { length } = nums1;
-    const result = [];
-    for (let i = 0; i < length; i += 1) {
-      result.push(`${nums1[i]} ${oper[i]} ${nums2[i]}`);
-    }
-    return result;
+  const createExpression = () => {
+    const operations = ['+', '-', '*'];
+    const item = Math.round(Math.random() * operations.length);
+    return `${engine.makeRandomNumber(1, 20)} ${operations[item]} ${engine.makeRandomNumber(1, 20)}`;
   };
-  const results = (nums1, nums2, oper) => {
-    for (let i = 0; i < nums1.length; i += 1) {
-      if (oper[i] === '*' && nums1[i] * nums2[i]) {
-        return true;
-      }
-      if (oper[i] === '-' && nums1[i] - nums2[i]) {
-        return true;
-      }
-      if (oper[i] === '+' && nums1[i] + nums2[i]) {
-        return true;
-      }
-      return false;
+  const parseExpression = (expression) => expression.split(' ');
+
+  const resultExpression = (expression) => {
+    const [firstOperand, operation, secondOperand] = parseExpression(expression);
+    const firstIntValue = Number.parseInt(firstOperand, 10);
+    const secondIntValue = Number.parseInt(secondOperand, 10);
+    const sumOfNumbers = firstIntValue + secondIntValue;
+    const differenceOfNumbers = firstIntValue - secondIntValue;
+    const productOfNumbers = firstIntValue * secondIntValue;
+    console.log([sumOfNumbers, differenceOfNumbers, productOfNumbers]);
+    if (operation === '+' && (firstIntValue + secondIntValue === sumOfNumbers)) {
+      return true;
+    }
+    if (operation === '-' && (firstIntValue - secondIntValue === differenceOfNumbers)) {
+      return true;
+    }
+    if (operation === '*' && (firstIntValue * secondIntValue === productOfNumbers)) {
+      return true;
     }
     return false;
   };
-
-  const data = createExpression(numbers1, numbers2, operations);
-  const resultsExpressions = results(numbers1, numbers2, operations);
-
-  return engine.loop('What is the result of the expression?', data, resultsExpressions);
+  const answer = (expression) => {
+    const [firstOperand, operation, secondOperand] = parseExpression(expression);
+    const firstIntValue = Number.parseInt(firstOperand, 10);
+    const secondIntValue = Number.parseInt(secondOperand, 10);
+    const sumOfNumbers = firstIntValue + secondIntValue;
+    const differenceOfNumbers = firstIntValue - secondIntValue;
+    const productOfNumbers = firstIntValue * secondIntValue;
+    switch (operation) {
+      case '+':
+        return sumOfNumbers;
+      case '-':
+        return differenceOfNumbers;
+      case '*':
+        return productOfNumbers;
+      default:
+        return undefined;
+    }
+  };
+  return engine.loop('What is the result of the expression?', createExpression, resultExpression, answer);
 };
