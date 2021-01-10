@@ -18,13 +18,15 @@ export default {
       const boolValues = logicData(dataQuestion);
       const rightAnswer = responseData(dataQuestion);
       const wrongAnswer = (right) => `'${answer}' is wrong answer ;(. Correct answer was '${right}'.\nLet's try again, ${nameUser}!'`;
-      if ((rightAnswer === answer && boolValues === true) || (rightAnswer !== answer && boolValues === false)) {
+      if ((rightAnswer === answer && boolValues) || (rightAnswer === answer && !boolValues)) {
         console.log(dataQuestion);
         console.log(boolValues);
+        console.log(rightAnswer);
         console.log('Correct');
-      } else if ((!boolValues && rightAnswer === answer) || (boolValues && rightAnswer !== answer)) {
+      } else if ((!boolValues && rightAnswer !== answer) || (boolValues && rightAnswer !== answer)) {
         console.log(dataQuestion);
         console.log(boolValues);
+        console.log(rightAnswer);
         console.log(wrongAnswer(rightAnswer));
         return;
       } else {

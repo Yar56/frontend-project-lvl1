@@ -3,7 +3,7 @@ import engine from '../index.js';
 export default () => {
   const createExpression = () => {
     const operations = ['+', '-', '*'];
-    const item = Math.round(Math.random() * operations.length);
+    const item = Math.floor(Math.random() * operations.length);
     return `${engine.makeRandomNumber(1, 20)} ${operations[item]} ${engine.makeRandomNumber(1, 20)}`;
   };
   const parseExpression = (expression) => expression.split(' ');
@@ -15,7 +15,7 @@ export default () => {
     const sumOfNumbers = firstIntValue + secondIntValue;
     const differenceOfNumbers = firstIntValue - secondIntValue;
     const productOfNumbers = firstIntValue * secondIntValue;
-    console.log([sumOfNumbers, differenceOfNumbers, productOfNumbers]);
+    // console.log([sumOfNumbers, differenceOfNumbers, productOfNumbers]);
     if (operation === '+' && (firstIntValue + secondIntValue === sumOfNumbers)) {
       return true;
     }
@@ -36,11 +36,11 @@ export default () => {
     const productOfNumbers = firstIntValue * secondIntValue;
     switch (operation) {
       case '+':
-        return sumOfNumbers;
+        return sumOfNumbers.toString();
       case '-':
-        return differenceOfNumbers;
+        return differenceOfNumbers.toString();
       case '*':
-        return productOfNumbers;
+        return productOfNumbers.toString();
       default:
         return undefined;
     }
