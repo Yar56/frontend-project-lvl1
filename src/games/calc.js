@@ -1,30 +1,32 @@
 import engine from '../index.js';
 
 export default () => {
-  const createExpression = () => {
+  const wrapper = () => {
     const operations = ['+', '-', '*'];
     const item = Math.floor(Math.random() * operations.length);
-    return `${engine.makeRandomNumber(1, 20)} ${operations[item]} ${engine.makeRandomNumber(1, 20)}`;
-  };
-  const parseExpressionFromString = (expression) => expression.split(' ');
-
-  const getRightAnswer = (expression) => {
-    const [firstOperand, operation, secondOperand] = parseExpressionFromString(expression);
+    const expression = `${engine.makeRandomNumber(1, 20)} ${operations[item]} ${engine.makeRandomNumber(1, 20)}`;
+    const [firstOperand, operation, secondOperand] = expression.split(' ');
     const firstIntValue = Number.parseInt(firstOperand, 10);
     const secondIntValue = Number.parseInt(secondOperand, 10);
     const sumOfNumbers = firstIntValue + secondIntValue;
     const differenceOfNumbers = firstIntValue - secondIntValue;
     const productOfNumbers = firstIntValue * secondIntValue;
+    // const result = [expression];
+    let answer = '';
     switch (operation) {
       case '+':
-        return sumOfNumbers.toString();
+        answer = sumOfNumbers;
+        return [expression, answer];
       case '-':
-        return differenceOfNumbers.toString();
+        answer = differenceOfNumbers;
+        return [expression, answer];
       case '*':
-        return productOfNumbers.toString();
+        answer = productOfNumbers;
+        return [expression, answer];
       default:
         return undefined;
     }
   };
-  return engine.loop('What is the result of the expression?', createExpression, getRightAnswer);
+
+  return engine.loop('What is the result of the expression?', wrapper);
 };

@@ -6,29 +6,25 @@ export default {
     const maxRange = max;
     return Math.ceil(Math.random() * (maxRange - minRange) + minRange);
   },
-  loop(greeting, data, responseData) {
+  loop(greeting, logicGame) {
     console.log('Welcome to the Brain Games!');
     const nameUser = readlineSync.question('May I have your name? ');
     console.log(`Hello, ${nameUser}!`);
     console.log(greeting);
     const countAnswers = 3;
     for (let i = 0; i < countAnswers; i += 1) {
-      const dataQuestion = data();
-      console.log(`Question: ${dataQuestion}`);
+      const [data, rightAnswer] = logicGame();
+      const answerToStr = rightAnswer.toString();
+      console.log(`Question: ${data}`);
       const answer = readlineSync.question('Your answer: ');
-      const rightAnswer = responseData(dataQuestion);
       const wrongAnswer = (right) => `'${answer}' is wrong answer ;(. Correct answer was '${right}'.\nLet's try again, ${nameUser}!'`;
-      if ((rightAnswer === answer)) {
-        console.log(dataQuestion);
-        console.log(rightAnswer);
+      if ((answerToStr === answer)) {
         console.log('Correct');
-      } else if (rightAnswer !== answer) {
-        console.log(dataQuestion);
-        console.log(rightAnswer);
-        console.log(wrongAnswer(rightAnswer));
+      } else if (answerToStr !== answer) {
+        console.log(wrongAnswer(answerToStr));
         return;
       } else {
-        console.log(wrongAnswer(rightAnswer));
+        console.log(wrongAnswer(answerToStr));
         return;
       }
     }

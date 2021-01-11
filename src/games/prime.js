@@ -1,16 +1,16 @@
 import engine from '../index.js';
 
 export default () => {
-  const createNumber = () => engine.makeRandomNumber(2, 30);
-
-  const getRightAnswer = (num) => {
-    for (let i = 2; i < num; i += 1) {
-      if (num % i === 0) {
-        return 'no';
+  const wrapper = () => {
+    const number = engine.makeRandomNumber(2, 30);
+    let answer = 'yes';
+    for (let i = 2; i < number; i += 1) {
+      if (number % i === 0) {
+        answer = 'no';
+        return [number, answer];
       }
     }
-    return 'yes';
+    return [number, answer];
   };
-
-  engine.loop('Answer "yes" if given number is prime. Otherwise answer "no".', createNumber, getRightAnswer);
-};
+  engine.loop('Answer "yes" if given number is prime. Otherwise answer "no".', wrapper);
+}
