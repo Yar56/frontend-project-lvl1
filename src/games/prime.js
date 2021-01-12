@@ -13,4 +13,4 @@ export default () => {
     return [number, answer];
   };
   engine.loop('Answer "yes" if given number is prime. Otherwise answer "no".', wrapper);
-}
+};

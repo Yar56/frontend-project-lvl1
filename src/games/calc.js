@@ -11,7 +11,6 @@ export default () => {
     const sumOfNumbers = firstIntValue + secondIntValue;
     const differenceOfNumbers = firstIntValue - secondIntValue;
     const productOfNumbers = firstIntValue * secondIntValue;
-    // const result = [expression];
     let answer = '';
     switch (operation) {
       case '+':
