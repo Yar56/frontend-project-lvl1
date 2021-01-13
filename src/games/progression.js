@@ -1,7 +1,8 @@
-import engine from '../index.js';
+import startGameEngine from '../index.js';
+import makeRandomNumber from '../utils.js';
 
 export default () => {
-  const wrapper = () => {
+  const generateDataAndAnswer = () => {
     const arrayForProgression = [];
     const lengthProgression = [16, 20, 38];
     const steps = [2, 3, 5];
@@ -12,11 +13,11 @@ export default () => {
       arrayForProgression.unshift(num);
     }
     const sortProgression = arrayForProgression.sort((a, b) => a - b);
-    const randomSplice = Math.floor(Math.random() * sortProgression.length);
+    const randomSplice = makeRandomNumber(0, sortProgression.length) - 1;
     const answer = sortProgression.splice(randomSplice, 1, '..');
     const progression = sortProgression.join(' ');
 
-    return [progression, answer];
+    return [progression, answer.toString()];
   };
-  return engine.loop('What number is missing in the progression?', wrapper);
+  return startGameEngine('What number is missing in the progression?', generateDataAndAnswer);
 };

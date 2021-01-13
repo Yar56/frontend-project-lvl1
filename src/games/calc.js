@@ -1,31 +1,24 @@
-import engine from '../index.js';
+import startGameEngine from '../index.js';
+import makeRandomNumber from '../utils.js';
 
 export default () => {
-  const wrapper = () => {
+  const generateDataAndAnswer = () => {
     const operations = ['+', '-', '*'];
-    const item = Math.floor(Math.random() * operations.length);
-    const expression = `${engine.makeRandomNumber(1, 20)} ${operations[item]} ${engine.makeRandomNumber(1, 20)}`;
-    const [firstOperand, operation, secondOperand] = expression.split(' ');
-    const firstIntValue = Number.parseInt(firstOperand, 10);
-    const secondIntValue = Number.parseInt(secondOperand, 10);
-    const sumOfNumbers = firstIntValue + secondIntValue;
-    const differenceOfNumbers = firstIntValue - secondIntValue;
-    const productOfNumbers = firstIntValue * secondIntValue;
-    let answer = '';
-    switch (operation) {
+    const randomOperation = operations[makeRandomNumber(0, operations.length) - 1];
+    const firstOperand = makeRandomNumber(1, 20);
+    const secondOperand = makeRandomNumber(1, 20);
+    const expression = `${firstOperand} ${randomOperation} ${secondOperand}`;
+    switch (randomOperation) {
       case '+':
-        answer = sumOfNumbers;
-        return [expression, answer];
+        return [expression, (firstOperand + secondOperand).toString()];
       case '-':
-        answer = differenceOfNumbers;
-        return [expression, answer];
+        return [expression, (firstOperand - secondOperand).toString()];
       case '*':
-        answer = productOfNumbers;
-        return [expression, answer];
+        return [expression, (firstOperand * secondOperand).toString()];
       default:
         return undefined;
     }
   };
 
-  return engine.loop('What is the result of the expression?', wrapper);
+  return startGameEngine('What is the result of the expression?', generateDataAndAnswer);
 };

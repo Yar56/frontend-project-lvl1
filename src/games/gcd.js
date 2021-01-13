@@ -1,9 +1,10 @@
-import engine from '../index.js';
+import startGameEngine from '../index.js';
+import makeRandomNumber from '../utils.js';
 
 export default () => {
-  const wrapper = () => {
-    const firstNumber = Math.floor(engine.makeRandomNumber(1, 110));
-    const secondNumber = Math.ceil(engine.makeRandomNumber(1, 60));
+  const generateDataAndAnswer = () => {
+    const firstNumber = Math.floor(makeRandomNumber(1, 110));
+    const secondNumber = Math.ceil(makeRandomNumber(1, 60));
     const numbers = `${firstNumber} ${secondNumber}`;
     const findGcd = (a, b) => {
       if (b === 0) {
@@ -11,10 +12,9 @@ export default () => {
       }
       return findGcd(b, a % b);
     };
-    const [firstNumb, secondNumb] = numbers.split(' ');
-    const answer = findGcd(firstNumb, secondNumb);
-    const result = [numbers, answer];
+    const answer = findGcd(firstNumber, secondNumber);
+    const result = [numbers, answer.toString()];
     return result;
   };
-  return engine.loop('Find the greatest common divisor of given numbers.', wrapper);
+  return startGameEngine('Find the greatest common divisor of given numbers.', generateDataAndAnswer);
 };

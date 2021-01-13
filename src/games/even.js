@@ -1,17 +1,16 @@
-import engine from '../index.js';
+import startGameEngine from '../index.js';
+import makeRandomNumber from '../utils.js';
 
 export default () => {
-  const wrapper = () => {
-    const number = engine.makeRandomNumber(2, 30);
-    let answer = '';
-    if (number % 2 === 0) {
-      answer = 'yes';
-    } else {
-      answer = 'no';
-    }
-    const result = [number, answer];
+  const generateDataAndAnswer = () => {
+    const number = makeRandomNumber(2, 30);
+
+    const isEven = (numb) => numb % 2 === 0;
+    const correctAnswer = isEven(number) ? 'yes' : 'no';
+
+    const result = [number, correctAnswer];
     return result;
   };
 
-  return engine.loop('Answer "yes" if the number is even, otherwise answer "no".', wrapper);
+  startGameEngine('Answer "yes" if the number is even, otherwise answer "no".', generateDataAndAnswer);
 };
