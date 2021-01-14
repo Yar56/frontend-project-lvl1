@@ -5,8 +5,8 @@ export default (descriptionGame, getDataAndCorrectAnswer) => {
   const nameUser = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${nameUser}!`);
   console.log(descriptionGame);
-  const countAnswers = 3;
-  for (let i = 0; i < countAnswers; i += 1) {
+  const roundCount = 3;
+  for (let i = 0; i < roundCount; i += 1) {
     const [data, correctAnswer] = getDataAndCorrectAnswer();
     console.log(`Question: ${data}`);
     const answer = readlineSync.question('Your answer: ');

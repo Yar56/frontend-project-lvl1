@@ -3,8 +3,11 @@ import makeRandomNumber from '../utils.js';
 
 export default () => {
   const generateDataAndAnswer = () => {
-    const number = makeRandomNumber(2, 30);
+    const number = makeRandomNumber(0, 100);
     const isPrime = (num) => {
+      if (num < 2) {
+        return false;
+      }
       for (let i = 2; i < num; i += 1) {
         if (num % i === 0) {
           return false;

@@ -3,21 +3,16 @@ import makeRandomNumber from '../utils.js';
 
 export default () => {
   const generateDataAndAnswer = () => {
-    const arrayForProgression = [];
-    const lengthProgression = [16, 20, 38];
-    const steps = [2, 3, 5];
-    const randomItem = Math.floor(Math.random() * lengthProgression.length);
-    const randomLength = lengthProgression[randomItem];
-    const randomStep = steps[randomItem];
-    for (let num = randomStep; num <= randomLength; num += randomStep) {
-      arrayForProgression.unshift(num);
+    const progressions = [];
+    const lengthProgression = makeRandomNumber(5, 10);
+    const randomStep = makeRandomNumber(2, 5);
+    for (let i = randomStep; i < lengthProgression * randomStep; i += randomStep) {
+      progressions.push(i);
     }
-    const sortProgression = arrayForProgression.sort((a, b) => a - b);
-    const randomSplice = makeRandomNumber(0, sortProgression.length) - 1;
-    const answer = sortProgression.splice(randomSplice, 1, '..');
-    const progression = sortProgression.join(' ');
-
-    return [progression, answer.toString()];
+    const randomIndex = makeRandomNumber(0, progressions.length - 1);
+    const answer = progressions[randomIndex];
+    progressions[randomIndex] = '..';
+    return [progressions.join(' '), answer.toString()];
   };
   return startGameEngine('What number is missing in the progression?', generateDataAndAnswer);
 };
