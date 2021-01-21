@@ -18,7 +18,7 @@ const getCorrectAnswer = (operation, firstOperand, secondOperand) => {
   }
 };
 
-const generateDataAndAnswer = () => {
+const generateQuestionAndAnswer = () => {
   const operations = ['+', '-', '*'];
   const randomOperation = operations[makeRandomNumber(0, operations.length) - 1];
   const firstOperand = makeRandomNumber(1, 20);
@@ -28,4 +28,4 @@ const generateDataAndAnswer = () => {
   return getDataGame(gameQuestion, correctAnswer);
 };
 
-export default () => startEngine(descriptionGame, generateDataAndAnswer);
+export default () => startEngine(descriptionGame, generateQuestionAndAnswer);

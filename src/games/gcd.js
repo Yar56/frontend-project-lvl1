@@ -10,12 +10,12 @@ const findGcd = (a, b) => {
   return findGcd(b, a % b);
 };
 
-const generateDataAndAnswer = () => {
-  const firstNumber = Math.floor(makeRandomNumber(1, 110));
-  const secondNumber = Math.ceil(makeRandomNumber(1, 60));
+const generateQuestionAndAnswer = () => {
+  const firstNumber = makeRandomNumber(1, 110);
+  const secondNumber = makeRandomNumber(1, 60);
   const gameQuestion = `${firstNumber} ${secondNumber}`;
   const correctAnswer = findGcd(firstNumber, secondNumber);
   return [gameQuestion, correctAnswer.toString()];
 };
 
-export default () => startEngine(descriptionGame, generateDataAndAnswer);
+export default () => startEngine(descriptionGame, generateQuestionAndAnswer);
