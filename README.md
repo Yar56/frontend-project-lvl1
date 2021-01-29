@@ -13,6 +13,9 @@
 ## What is Mind Games?
 Mind Games are five console games. Each game asks you three questions. Consider your answer and write it in the console. If all answers are correct, you won. Otherwise, restart the game. Good luck!
 
+## Prerequisite
+You need [Node.js](https://nodejs.org) installed on your machine.
+
 ## Install
 ```bash
 $ make install
