@@ -12,6 +12,22 @@
 
 ## What is Mind Games?
 Mind Games are five console games. Each game asks you three questions. Consider your answer and write it in the console. If all answers are correct, you won. Otherwise, restart the game. Good luck!
+## Docker
+You can download my docker image to try these games.
+### Start
+```bash
+docker run -it --rm yar56/brain-games
+```
+<details>
+<summary>Enter these commands into the console</summary>
+- brain-even <br>
+- brain-calc <br>
+- brain-gcd <br>
+- brain-prime <br>
+- brain-progression <br>
+- exit (exit from container)
+</details>
+<br>
 
 ## Prerequisite
 You need [Node.js](https://nodejs.org) installed on your machine. ( node-version: __[14.x]__ )
